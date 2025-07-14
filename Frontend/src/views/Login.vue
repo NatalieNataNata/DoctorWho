@@ -66,13 +66,13 @@ const router = useRouter();
 
 
 function login() {
-  axios.post('http://127.0.0.1:8000/api/users/login/', {
+  axios.post('http://127.0.0.1:8001/api/users/login/', {
     username: username.value,
     password: password.value
   })
   .then(res => {
-    console.log('```````````````',res);
-    console.log(res.data.status === 'success'); // true
+    // console.log('```````````````',res);
+    // console.log(res.data.status === 'success'); // true
     if (res.data.status === 'success') {
       console.log('xxxxxxxxxxxxxxxxxres.data.username：',res.data.user.username)
       // 如果后端返回 token，可以 authStore.setToken(res.data.token)
@@ -81,7 +81,7 @@ function login() {
         role_id: res.data.user.role_id
       });
       // 登录成功，跳转页面
-      router.push('/');
+      router.push('dashboard');
     } else {
       console.log("登陆失败")
       alert(res.data.message);
